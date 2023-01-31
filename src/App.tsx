@@ -1,22 +1,29 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/index.scss";
 import Board from "./components/Board";
 import Keyboard from "./components/Keyboard";
 import { createContext } from "react";
-import { boardDefault } from "./Words";
-import React from "react";
+import { boardDefault, generateWordSet } from "./Words";
 
 export const AppContext = createContext();
 
 function App() {
-  const [board, setBoard] = useState(boardDefault);
+  const [board, setBoard] = useState<string[][]>(boardDefault);
   const [currentAttempt, setCurrentAttempt] = useState({
     attempt: 0,
     letterPosition: 0,
   });
-  const correctWord = "YOUNG"
+  const [wordSet, setWordSet] = useState(new Set())
 
-  const onSelectLetter = (keyValue: any) => {
+  const correctWord = "RIGHT"
+
+  useEffect(() => {
+    generateWordSet().then((words) => {
+      setWordSet(words.wordSet);
+    });
+  }, []);
+
+  const onSelectLetter = (keyValue: string) => {
     if (currentAttempt.letterPosition > 4) return;
     const newBoard = [...board];
     newBoard[currentAttempt.attempt][currentAttempt.letterPosition] = keyValue;
@@ -29,10 +36,20 @@ function App() {
 
   const onEnter = () => {
     if (currentAttempt.letterPosition !== 5) return;
-    setCurrentAttempt({
-      attempt: currentAttempt.attempt + 1,
-      letterPosition: 0,
-    });
+
+    let currentWord = "";
+    for (let i = 0; i < 5; i++) {
+      currentWord += board[currentAttempt.attempt][i];
+    }
+
+    if (wordSet.has(currentWord.toLowerCase())) {
+      setCurrentAttempt({
+        attempt: currentAttempt.attempt + 1,
+        letterPosition: 0,
+      });
+    } else {
+      alert("Word not found")
+    }
   };
 
   const onDelete = () => {
