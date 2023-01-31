@@ -7,7 +7,7 @@ const Key = ({ keyValue, largeKey }: any) => {
   const selectLetter = () => {
     if (keyValue === "ENTER") {
       onEnter();
-    } else if (keyValue === "DELETE") {
+    } else if (keyValue === "X") {
       onDelete();
     } else {
       onSelectLetter(keyValue);

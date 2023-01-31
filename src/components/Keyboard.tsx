@@ -59,7 +59,7 @@ const Keyboard = () => {
         {keys3.map((key) => {
           return <Key keyValue={key} />;
         })}
-        <Key keyValue={"DELETE"} largeKey />
+        <Key keyValue={"X"} largeKey />
       </div>
     </div>
   );

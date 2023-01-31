@@ -14,7 +14,7 @@ function App() {
     attempt: 0,
     letterPosition: 0,
   });
-  const correctWord = "RIGHT"
+  const correctWord = "YOUNG"
 
   const onSelectLetter = (keyValue: any) => {
     if (currentAttempt.letterPosition > 4) return;
