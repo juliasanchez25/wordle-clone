@@ -7,9 +7,10 @@ const Letter = ({ letterPosition, attemptValue }: any) => {
   const letter = board[attemptValue][letterPosition];
 
   const correct = correctWord[letterPosition] === letter;
+  console.log(correct)
   const almost = !correct && letter !== "" && correctWord.includes(letter);
 
-  const letterState =
+  const letterState: any =
     currentAttempt.attempt > attemptValue &&
     (correct ? "correct" : almost ? "almost" : "error");
 

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AppContext } from "../App";
 
 const Key = ({ keyValue, largeKey }: any) => {
-  const { onSelectLetter, onEnter, onDelete }: any = useContext(AppContext);
+  const { onClickedLetter, onEnter, onDelete }: any = useContext(AppContext);
 
   const selectLetter = () => {
     if (keyValue === "ENTER") {
@@ -10,7 +10,7 @@ const Key = ({ keyValue, largeKey }: any) => {
     } else if (keyValue === "X") {
       onDelete();
     } else {
-      onSelectLetter(keyValue);
+      onClickedLetter(keyValue);
     }
   };
 

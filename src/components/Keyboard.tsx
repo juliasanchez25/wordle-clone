@@ -4,7 +4,7 @@ import "../styles/index.scss";
 import Key from "./Key";
 
 const Keyboard = () => {
-  const { onEnter, onDelete, onSelectLetter }: any = useContext(AppContext);
+  const { onEnter, onDelete, onClickedLetter }: any = useContext(AppContext);
 
   const keys1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
   const keys2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
@@ -18,21 +18,21 @@ const Keyboard = () => {
     } else {
       keys1.forEach((key) => {
         if (event.key.toLowerCase() === key.toLowerCase()) {
-          onSelectLetter(key);
+          onClickedLetter(key);
         }
       });
       keys2.forEach((key) => {
         if (event.key.toLowerCase() === key.toLowerCase()) {
-          onSelectLetter(key);
+          onClickedLetter(key);
         }
       });
       keys3.forEach((key) => {
         if (event.key.toLowerCase() === key.toLowerCase()) {
-          onSelectLetter(key);
+          onClickedLetter(key);
         }
       });
     }
-  });
+  }, [keys1]);
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyboard);
