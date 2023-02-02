@@ -61,6 +61,11 @@ function App() {
       return alert("Word not found");
     }
 
+    setCurrentAttempt({
+      attempt: currentAttempt.attempt + 1,
+      letterPosition: 0,
+    });
+
     if (currentWord === correctWord) {
       setGameOver({ gameOver: true, guessedWord: true });
       return;
@@ -69,11 +74,6 @@ function App() {
     if (currentAttempt.attempt === 5) {
       setGameOver({ gameOver: true, guessedWord: false });
     }
-
-    setCurrentAttempt({
-      attempt: currentAttempt.attempt + 1,
-      letterPosition: 0,
-    });
   };
 
   const onDelete = () => {
