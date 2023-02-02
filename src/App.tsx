@@ -25,7 +25,8 @@ function App() {
   useEffect(() => {
     generateWordSet().then((words: any) => {
       setWordSet(words.wordSet);
-      setCorrectWord(words.todaysWord);
+      setCorrectWord("RIGHT");
+      //words.todaysWord
     });
   }, []);
 
@@ -61,11 +62,6 @@ function App() {
       return alert("Word not found");
     }
 
-    setCurrentAttempt({
-      attempt: currentAttempt.attempt + 1,
-      letterPosition: 0,
-    });
-
     if (currentWord === correctWord) {
       setGameOver({ gameOver: true, guessedWord: true });
       return;
@@ -74,6 +70,11 @@ function App() {
     if (currentAttempt.attempt === 5) {
       setGameOver({ gameOver: true, guessedWord: false });
     }
+
+    setCurrentAttempt({
+      attempt: currentAttempt.attempt + 1,
+      letterPosition: 0,
+    });
   };
 
   const onDelete = () => {
@@ -100,14 +101,13 @@ function App() {
           setBoard,
           currentAttempt,
           setCurrentAttempt,
-          onClickedLetter,
-          onEnter,
-          onDelete,
           correctWord,
+          onClickedLetter,
+          onDelete,
+          onEnter,
           setDisabledLetters,
           disabledLetters,
-          gameOver,
-          setGameOver,
+          gameOver
         }}
       >
         <div className="game-container">
