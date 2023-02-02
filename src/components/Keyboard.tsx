@@ -4,7 +4,7 @@ import "../styles/index.scss";
 import Key from "./Key";
 
 const Keyboard = () => {
-  const { onEnter, onDelete, onClickedLetter }: any = useContext(AppContext);
+  const { onEnter, onDelete, onClickedLetter, disabledLetters, setDisabledLetters }: any = useContext(AppContext);
 
   const keys1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
   const keys2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
@@ -46,18 +46,18 @@ const Keyboard = () => {
     <div className="keyboard-container" onKeyDown={handleKeyboard}>
       <div className="keyboard-container__line1">
         {keys1.map((key) => {
-          return <Key keyValue={key} />;
+          return <Key keyValue={key} disabled={disabledLetters.includes(key)}/>;
         })}
       </div>
       <div className="keyboard-container__line2">
         {keys2.map((key) => {
-          return <Key keyValue={key} />;
+          return <Key keyValue={key} disabled={disabledLetters.includes(key)}/>;
         })}
       </div>
       <div className="keyboard-container__line3">
         <Key keyValue={"ENTER"} largeKey />
         {keys3.map((key) => {
-          return <Key keyValue={key} />;
+          return <Key keyValue={key} disabled={disabledLetters.includes(key)}/>;
         })}
         <Key keyValue={"X"} largeKey />
       </div>
